@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +45,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      color: white;
+      font-weight: bold;
     }
     .box img {
       width: 80px;
@@ -113,6 +114,12 @@
     }
     .task-button.loading { background: #444; color: #fff; }
     .task-button.verified { background: #28a745; color: #fff; }
+    footer {
+      padding: 20px;
+      font-size: 0.8em;
+      background-color: #1a1a1a;
+      margin-top: 40px;
+    }
   </style>
 </head>
 <body>
@@ -127,8 +134,8 @@
     <div class="box box1"><img src="1000156775.webp" /></div>
     <div class="box box2"><img src="1000156776.webp" /></div>
     <div class="box box3"><img src="1000156777.webp" /></div>
-    <div class="box box4 red">Try Again</div>
-    <div class="box box5 green">+10 Coins</div>
+    <div class="box box4 red">Loss</div>
+    <div class="box box5 green">10 Coin</div>
   </div>
 
   <button class="spin-button" onclick="spin()">Spin</button>
@@ -157,15 +164,19 @@
     </div>
   </div>
 
+  <footer>
+    <p>For entertainment purposes only. Rewards are virtual and symbolic. This site is made for creative engagement and learning.</p>
+    <p>Contact | Privacy Policy | Terms of Use</p>
+  </footer>
+
   <script>
     let coins = 10;
     const coinDisplay = document.getElementById("coin-count");
 
     function spin() {
-      if (coins < 10) return alert("Not enough coins!");
+      if (coins < 10) return;
       coins -= 10;
       coinDisplay.textContent = coins;
-
       const boxes = ["box1", "box2", "box3", "box4", "box5"];
       let index = 0;
       const result = Math.random() < 0.5 ? "box4" : "box5";
@@ -180,9 +191,6 @@
           if (result === "box5") {
             coins += 10;
             coinDisplay.textContent = coins;
-            alert("You got +10 Coins!");
-          } else {
-            alert("Try Again!");
           }
         }
       }, 100);
